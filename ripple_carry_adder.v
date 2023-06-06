@@ -22,8 +22,8 @@ module ripple_carry_adder # ( parameter NUMBITS = 16 ) (
     input  wire[NUMBITS-1:0] B, 
     input wire carryin, 
     output reg [NUMBITS-1:0] result,  
-    output reg carryout); 
-);
+    output wire carryout
+); 
     // ------------------------------
     // Insert your solution below
     // ------------------------------ 
@@ -34,6 +34,9 @@ wire [NUMBITS-1:0] result_w;
 assign carri[0] = 0;
 assign carryout = carri[NUMBITS];
 
+always @(*) begin
+  result <= result_w;
+end
 genvar i;
 
   generate
@@ -43,7 +46,7 @@ genvar i;
             .b(B[i]), 
             .c_in(carri[i]), 
             .c_out(carri[i+1]),
-            .s(result_w[i])           
+            .s(result_w[i])          
         );
     end
   endgenerate
