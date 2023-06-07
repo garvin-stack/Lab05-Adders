@@ -107,6 +107,7 @@ module ripple_carry_adder_tb;
         expected_result = 8'h00;
         
         #100; // Wait 
+
         $write("\t any%d", result);
         $write("\t any%d", carryout);
         if (expected_result !== result || carryout !== 1'b1) begin
@@ -116,12 +117,12 @@ module ripple_carry_adder_tb;
             $write("passed\n");
         end
         #10; // Wait 
+
         totalTests = totalTests + 1;
-        $write("\tTest Case 1.2:  FF + 01 = 0, c_out = 1 ... ");
+        $write("\tTest Case 1.2:  FF + 01 = 00, c_out = 1 ... ");
         A = 8'hFF;
         B = 8'h01;
         expected_result = 8'h00;
-
         #100; // Wait 
         if (expected_result !== result || carryout !== 1'b1) begin
             $write("failed\n");
@@ -132,13 +133,13 @@ module ripple_carry_adder_tb;
         #10; // Wait     
 
         totalTests = totalTests + 1;
-        $write("\tTest Case 1.3:  FF + 01 = 0, c_out = 1 ... ");
+        $write("\tTest Case 1.3:  00 + 0F = 0F, c_out = 0 ... ");
         A = 8'h00;
         B = 8'h0F;
         expected_result = 8'h0F;
 
         #100; // Wait 
-        if (expected_result !== result || carryout !== 1'b0) begin
+        if (expected_result !== result || carryout !== 1'b1) begin
             $write("failed\n");
             failedTests = failedTests + 1;
         end else begin
@@ -146,6 +147,40 @@ module ripple_carry_adder_tb;
         end
         #10; // Wait 
 
+        totalTests = totalTests + 1;
+        $write("\tTest Case 1.4:  7F + 01 = 0, c_out = 0 ... ");
+        A = 8'h00;
+        B = 8'h0F;
+        expected_result = 8'h0F;
+
+        #100; // Wait 
+        if (expected_result !== result || carryout !== 1'b1) begin
+            $write("failed\n");
+            failedTests = failedTests + 1;
+        end else begin
+            $write("passed\n");
+        end
+        #10; // Wait 
+        //-1 + 1
+
+        totalTests = totalTests + 1;
+        $write("\tTest Case 1.4:  7F + 01 = 0, c_out = 0 ... ");
+        A = 8'hF0;
+        B = 8'h0F;
+        expected_result = 8'h0F;
+
+        #100; // Wait 
+        $write("\t any%d", A);
+        $write("\t any%d", B);
+        $write("\t any%d", result);
+        $write("\t any%d", carryout);
+        if (expected_result !== result || carryout !== 1'b1) begin
+            $write("failed\n");
+            failedTests = failedTests + 1;
+        end else begin
+            $write("passed\n");
+        end
+        #10; // Wait 
         // ----------------------------------------
         // Add more test cases here 
         // ----------------------------------------
