@@ -15,3 +15,6 @@ ripple carryout adder = 115100 ps
 carry look ahead adder = 5600 ps
 
 The ripple carry adder takes significantly more time than carry look ahead adder.
+This is because of ripple carry adder does sequential carry calculation while
+carry look ahead adder does parallel carry calculations. Sequential increases the delay a lot more compared to parallel. 
+
